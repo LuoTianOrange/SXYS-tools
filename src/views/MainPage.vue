@@ -90,7 +90,7 @@
                     <div v-if="!isMap" style="display: flex;flex-wrap: wrap;">
                         <div class="food-item" v-for="i in filteredFoods">
                             <div class="food-img">
-                                <img :src="i.foodimg" style="width: 80px;">
+                                    <img :src="i.foodimg" style="height:80px;">
                                 <span style="margin-top: 10px;">{{ i.name }}</span>
                             </div>
                             <div style="width: 200px;display: flex;flex-direction: column;align-items: center;">
