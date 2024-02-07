@@ -60,23 +60,18 @@
                                     item.name }}</el-menu-item>
                             </el-sub-menu>
                         </el-sub-menu>
-                        <el-sub-menu index="2" @click="isMap = false">
+                        <el-sub-menu index="2" @click="isMap = false;" >
                             <template #title>
                                 <el-icon>
                                     <DishDot />
                                 </el-icon>
-                                <div v-if="!isCollapse">食物查询</div>
+                                <div v-if="!isCollapse" @click="selectedTag = ''">食物查询</div>
                             </template>
-                            <!-- <el-menu-item index="2-1">攻击力</el-menu-item>
-                            <el-menu-item index="2-2">防御力</el-menu-item>
-                            <el-menu-item index="2-3">生命值</el-menu-item>
-                            <el-menu-item index="2-4">阻挡数</el-menu-item>
-                            <el-menu-item index="2-5">攻击速度</el-menu-item>
-                            <el-menu-item index="2-6">部署费用</el-menu-item>
-                            <el-menu-item index="2-7">再部署时间</el-menu-item>
-                            <el-menu-item index="2-8">法术抗性</el-menu-item>
-                            <el-menu-item index="2-9">技力消耗</el-menu-item>
-                            <el-menu-item index="2-10">其他</el-menu-item> -->
+                            <el-menu-item index="2-1" @click="selectedTag = '攻击力/攻击速度'">攻击力/攻击速度</el-menu-item>
+                            <el-menu-item index="2-2" @click="selectedTag = '生命值/防御力'">生命值/防御力</el-menu-item>
+                            <el-menu-item index="2-3" @click="selectedTag = '再部署时间'">再部署时间</el-menu-item>
+                            <el-menu-item index="2-4" @click="selectedTag = '技力消耗'">技力消耗</el-menu-item>
+                            <el-menu-item index="2-10" @click="selectedTag = '其他'">其他</el-menu-item>
                         </el-sub-menu>
                         <el-button @click="ChangeMenuMode" class="el-btn">
                             <el-icon>
@@ -91,10 +86,54 @@
                             :zoom-rate="1.2" :max-scale="7" :min-scale="0.2" :preview-src-list="object" :initial-index="1"
                             fit="cover" />
                     </div>
-                    <div v-if="!isMap">
-                        <el-image style="width: 75%; height: auto;margin: 0 auto;display: block !important;"
+                    <div v-if="!isMap" style="display: flex;flex-wrap: wrap;">
+                        <div class="food-item" v-for="i in filteredFoods">
+                            <div class="food-img">
+                                <img :src="i.foodimg" style="width: 80px;">
+                                <span style="margin-top: 10px;">{{ i.name }}</span>
+                            </div>
+                            <div style="width: 200px;display: flex;flex-direction: column;align-items: center;">
+                                <div style="display: flex;align-items: center;" v-if="i.mat1 != null">
+                                    <div class="food-icon-box">
+                                        <img :src="i.mat1" class="food-icon">
+                                        <span>{{ i.mat1name }}</span>
+                                    </div>
+                                    +
+                                    <div class="food-icon-box">
+                                        <img :src="i.mat2" class="food-icon">
+                                        <span>{{ i.mat2name }}</span>
+                                    </div>
+                                    +
+                                    <div class="food-icon-box">
+                                        <img :src="i.mat3" class="food-icon">
+                                        <span>{{ i.mat3name }}</span>
+                                    </div>
+                                </div>
+                                <div style="display: flex;align-items: center;" v-if="i.mat4 != null">
+                                    <div class="food-icon-box">
+                                        <img :src="i.mat4" class="food-icon">
+                                        <span>{{ i.mat4name }}</span>
+                                    </div>
+                                    +
+                                    <div class="food-icon-box">
+                                        <img :src="i.mat5" class="food-icon">
+                                        <span>{{ i.mat5name }}</span>
+                                    </div>
+                                    +
+                                    <div class="food-icon-box">
+                                        <img :src="i.mat6" class="food-icon">
+                                        <span>{{ i.mat6name }}</span>
+                                    </div>
+                                </div>
+                                <div v-if="i.mat1 == null">
+                                    没有配方！
+                                </div>
+                            </div>
+                            <div v-html="i.des" style="margin-left: 10px;"></div>
+                        </div>
+                        <!-- <el-image style="width: 75%; height: auto;margin: 0 auto;display: block !important;"
                             v-for="(item, index) in food" :key="index" :src="item" :zoom-rate="1.2" :max-scale="7"
-                            :min-scale="0.2" :preview-src-list="food" :initial-index="1" fit="cover" />
+                            :min-scale="0.2" :preview-src-list="food" :initial-index="0" fit="cover" /> -->
                     </div>
                 </el-main>
             </el-container>
@@ -109,16 +148,13 @@ import water_logo from '@/assets/imgs/resource/sandbox_1_water.png'
 import iron_logo from '@/assets/imgs/resource/sandbox_1_iron.png'
 import que_logo from '@/assets/imgs/resource/sandbox_1_goodsundry.png'
 // import test_map from '@/assets/imgs/maps/sandbox_1_stage_mappreview_0/sandbox_1_21.png'
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 const test_map = ref('https://i0.hdslb.com/bfs/article/d695da39707b21eab0f44f481143281b251015631.png')
 const object = computed(() => [test_map.value])
-const food = ref([
-    'https://album.biliimg.com/bfs/new_dyn/340085e7d94245b25c96a2847922ad24251015631.png',
-    'https://album.biliimg.com/bfs/new_dyn/a7d8457e8e1a1299bf801fcc54c78997251015631.png',
-    'https://album.biliimg.com/bfs/new_dyn/6e635bbfa109957f06444d65198199fd251015631.png',
-    'https://album.biliimg.com/bfs/new_dyn/50816cf66541857b81da168de080371a251015631.png',
-    'https://album.biliimg.com/bfs/new_dyn/aff598f4baf38332be01c008847d5adb251015631.png'
-])
+
+import food_store from '../assets/js/food.js'
+const imageModules = import.meta.glob('/src/assets/imgs/markfood/*.png')
+
 const isMap = ref(true)
 const isCollapse = ref(false)
 const search_input = ref('')
@@ -636,6 +672,18 @@ const other_level = [
         src: 'https://i0.hdslb.com/bfs/article/31f8c7266df444e7a91a67cad7e540f6251015631.png@1256w_1092h_!web-article-pic.avif'
     }
 ]
+
+let selectedTag = ref(null);
+
+let foodData = reactive(food_store);
+
+let filteredFoods = computed(() => {
+    if (!selectedTag.value) {
+        return foodData; // 如果没有选定的标签，返回所有食物
+    }
+    // 如果有选定的标签，只返回与该标签匹配的食物
+    return foodData.filter(food => food.tag.includes(selectedTag.value));
+});
 </script>
 
 <style scoped>
@@ -673,5 +721,40 @@ const other_level = [
     position: sticky;
     bottom: 20px;
     left: 8px;
+}
+
+.food-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: fill;
+}
+
+.food-icon-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.food-img {
+    width: 100px;
+    height: 100%;
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-item {
+    border: 1px solid #9c9c9c;
+    width: 500px;
+    min-height: 130px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 3px;
+    margin: 10px;
 }
 </style>
