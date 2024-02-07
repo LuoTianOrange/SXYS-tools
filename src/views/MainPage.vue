@@ -747,7 +747,8 @@ let filteredFoods = computed(() => {
 }
 
 .food-item {
-    border: 1px solid #9c9c9c;
+    box-shadow: 0px 0px 10px #0000003d;
+    /* border: 1px solid #9c9c9c; */
     width: 500px;
     min-height: 130px;
     padding: 10px;
