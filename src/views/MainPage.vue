@@ -86,6 +86,7 @@
                             :zoom-rate="1.2" :max-scale="7" :min-scale="0.2" :preview-src-list="object" :initial-index="1"
                             fit="cover" />
                     </div>
+                    <div v-if="!isMap" style="margin: 10px;font-size: 20px;">共计<span style="color: #000;">{{filteredFoods.length}}</span>个</div>
                     <div v-if="!isMap" style="display: flex;flex-wrap: wrap;">
                         <div class="food-item" v-for="i in filteredFoods">
                             <div class="food-img">
