@@ -11,81 +11,78 @@
             </el-header>
             <el-container style="height: calc(100vh - 60px);">
                 <el-aside width="200px">
-                    <client-only>
-                        <el-menu :collapse="isCollapse">
-                            <el-sub-menu index="1" @click="isMap = true">
-                                <template #title>
-                                    <el-icon>
-                                        <Picture />
-                                    </el-icon>
-                                    <div v-if="!isCollapse">地图查询</div>
-                                </template>
-                                <el-sub-menu index="1-1">
-                                    <template #title>
-                                        <img :src="wood_logo" class="menu-item-img">
-                                        <div>木材</div>
-                                    </template>
-                                    <el-menu-item v-for="item in wood_level" :key="item.name"
-                                        @click="test_map = item.src" index="1-1-1">{{
-                                            item.name }}</el-menu-item>
-                                </el-sub-menu>
-                                <el-sub-menu index="1-2">
-                                    <template #title>
-                                        <img :src="store_logo" class="menu-item-img">
-                                        <div>石材</div>
-                                    </template>
-                                    <el-menu-item v-for="item in store_level" :key="item.name"
-                                        @click="test_map = item.src" index="1-2-1">{{
-                                            item.name }}</el-menu-item>
-                                </el-sub-menu>
-                                <el-sub-menu index="1-3">
-                                    <template #title>
-                                        <img :src="iron_logo" class="menu-item-img">
-                                        <div>铁矿石</div>
-                                    </template>
-                                    <el-menu-item v-for="item in iron_level" :key="item.name"
-                                        @click="test_map = item.src" index="1-3-1">{{
-                                            item.name }}</el-menu-item>
-                                </el-sub-menu>
-                                <el-sub-menu index="1-4">
-                                    <template #title>
-                                        <img :src="water_logo" class="menu-item-img">
-                                        <div>水源</div>
-                                    </template>
-                                    <el-menu-item v-for="item in water_level" :key="item.name"
-                                        @click="test_map = item.src" index="1-4-1">{{
-                                            item.name }}</el-menu-item>
-                                </el-sub-menu>
-                                <el-sub-menu index="1-5">
-                                    <template #title>
-                                        <img :src="que_logo" class="menu-item-img">
-                                        <div>其他</div>
-                                    </template>
-                                    <el-menu-item v-for="item in other_level" :key="item.name"
-                                        @click="test_map = item.src">{{
-                                            item.name }}</el-menu-item>
-                                </el-sub-menu>
-                            </el-sub-menu>
-                            <el-sub-menu index="2" @click="isMap = false;">
-                                <template #title>
-                                    <el-icon>
-                                        <DishDot />
-                                    </el-icon>
-                                    <div v-if="!isCollapse" @click="selectedTag = ''">食物查询</div>
-                                </template>
-                                <el-menu-item index="2-1" @click="selectedTag = '攻击力/攻击速度'">攻击力/攻击速度</el-menu-item>
-                                <el-menu-item index="2-2" @click="selectedTag = '生命值/防御力'">生命值/防御力</el-menu-item>
-                                <el-menu-item index="2-3" @click="selectedTag = '再部署时间'">再部署时间</el-menu-item>
-                                <el-menu-item index="2-4" @click="selectedTag = '技力消耗'">技力消耗</el-menu-item>
-                                <el-menu-item index="2-5" @click="selectedTag = '其他'">其他</el-menu-item>
-                            </el-sub-menu>
-                            <el-button @click="ChangeMenuMode" class="el-btn">
+                    <el-menu :collapse="isCollapse">
+                        <el-sub-menu index="1" @click="isMap = true">
+                            <template #title>
                                 <el-icon>
-                                    <Expand />
+                                    <Picture />
                                 </el-icon>
-                            </el-button>
-                        </el-menu>
-                    </client-only>
+                                <div v-if="!isCollapse">地图查询</div>
+                            </template>
+                            <el-sub-menu index="1-1">
+                                <template #title>
+                                    <img :src="wood_logo" class="menu-item-img">
+                                    <div>木材</div>
+                                </template>
+                                <el-menu-item v-for="item in wood_level" :key="item.name" @click="test_map = item.src"
+                                    index="1-1-1">{{
+                                        item.name }}</el-menu-item>
+                            </el-sub-menu>
+                            <el-sub-menu index="1-2">
+                                <template #title>
+                                    <img :src="store_logo" class="menu-item-img">
+                                    <div>石材</div>
+                                </template>
+                                <el-menu-item v-for="item in store_level" :key="item.name" @click="test_map = item.src"
+                                    index="1-2-1">{{
+                                        item.name }}</el-menu-item>
+                            </el-sub-menu>
+                            <el-sub-menu index="1-3">
+                                <template #title>
+                                    <img :src="iron_logo" class="menu-item-img">
+                                    <div>铁矿石</div>
+                                </template>
+                                <el-menu-item v-for="item in iron_level" :key="item.name" @click="test_map = item.src"
+                                    index="1-3-1">{{
+                                        item.name }}</el-menu-item>
+                            </el-sub-menu>
+                            <el-sub-menu index="1-4">
+                                <template #title>
+                                    <img :src="water_logo" class="menu-item-img">
+                                    <div>水源</div>
+                                </template>
+                                <el-menu-item v-for="item in water_level" :key="item.name" @click="test_map = item.src"
+                                    index="1-4-1">{{
+                                        item.name }}</el-menu-item>
+                            </el-sub-menu>
+                            <el-sub-menu index="1-5">
+                                <template #title>
+                                    <img :src="que_logo" class="menu-item-img">
+                                    <div>其他</div>
+                                </template>
+                                <el-menu-item v-for="item in other_level" :key="item.name" @click="test_map = item.src">{{
+                                    item.name }}</el-menu-item>
+                            </el-sub-menu>
+                        </el-sub-menu>
+                        <el-sub-menu index="2" @click="isMap = false;">
+                            <template #title>
+                                <el-icon>
+                                    <DishDot />
+                                </el-icon>
+                                <div v-if="!isCollapse" @click="selectedTag = ''">食物查询</div>
+                            </template>
+                            <el-menu-item index="2-1" @click="selectedTag = '攻击力/攻击速度'">攻击力/攻击速度</el-menu-item>
+                            <el-menu-item index="2-2" @click="selectedTag = '生命值/防御力'">生命值/防御力</el-menu-item>
+                            <el-menu-item index="2-3" @click="selectedTag = '再部署时间'">再部署时间</el-menu-item>
+                            <el-menu-item index="2-4" @click="selectedTag = '技力消耗'">技力消耗</el-menu-item>
+                            <el-menu-item index="2-5" @click="selectedTag = '其他'">其他</el-menu-item>
+                        </el-sub-menu>
+                        <el-button @click="ChangeMenuMode" class="el-btn">
+                            <el-icon>
+                                <Expand />
+                            </el-icon>
+                        </el-button>
+                    </el-menu>
                 </el-aside>
                 <el-main>
                     <div v-if="isMap">
@@ -766,4 +763,5 @@ let filteredFoods = computed(() => {
     align-items: center;
     border-radius: 3px;
     margin: 10px;
-}</style>
+}
+</style>
