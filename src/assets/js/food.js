@@ -969,7 +969,7 @@ export default [
         "mat5name": null,
         "mat6": null,
         "mat6name": null,
-        "des": "普通版：每6秒获得1点技力，\n但技能变为自动释放<br>增强版：",
+        "des": "普通版：每6秒获得1点技力，\n但技能变为自动释放",
         "tag": [
             "技力消耗",
             "其他"
