@@ -60,7 +60,7 @@
                                     item.name }}</el-menu-item>
                             </el-sub-menu>
                         </el-sub-menu>
-                        <el-sub-menu index="2" @click="isMap = false;" >
+                        <el-sub-menu index="2" @click="isMap = false;">
                             <template #title>
                                 <el-icon>
                                     <DishDot />
@@ -86,11 +86,12 @@
                             :zoom-rate="1.2" :max-scale="7" :min-scale="0.2" :preview-src-list="object" :initial-index="1"
                             fit="cover" />
                     </div>
-                    <div v-if="!isMap" style="margin: 10px;font-size: 20px;">共计<span style="color: #000;">{{filteredFoods.length}}</span>个</div>
+                    <div v-if="!isMap" style="margin: 10px;font-size: 20px;">共计<span
+                            style="color: #000;">{{ filteredFoods.length }}</span>个</div>
                     <div v-if="!isMap" style="display: flex;flex-wrap: wrap;">
                         <div class="food-item" v-for="i in filteredFoods">
                             <div class="food-img">
-                                    <img :src="i.foodimg" style="height:80px;">
+                                <img :src="i.foodimg" style="height:80px;">
                                 <span style="margin-top: 10px;">{{ i.name }}</span>
                             </div>
                             <div style="width: 200px;display: flex;flex-direction: column;align-items: center;">
@@ -143,6 +144,7 @@
 </template>
 
 <script setup>
+import { ELMenu } from '@element-plus'
 import wood_logo from '@/assets/imgs/resource/sandbox_1_wood.png'
 import store_logo from '@/assets/imgs/resource/sandbox_1_stone.png'
 import water_logo from '@/assets/imgs/resource/sandbox_1_water.png'
@@ -301,7 +303,7 @@ const iron_level = [
     {
         name: '乱石岗',
         index: 1,
-        src: 'https://i0.hdslb.com/bfs/article/2dac181df697219ef9279c3d910dd03d251015631.png'
+        src: 'https://i0.hdslb.com/bfs/article/f9239a9beec3a367c7b3783a2f62171a251015631.png'
     },
     {
         name: '别塔卜-阿帕卡里',
