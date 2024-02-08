@@ -26,7 +26,7 @@
                                         <div>木材</div>
                                     </template>
                                     <el-menu-item v-for="item in wood_level" :key="item.name"
-                                        @click="test_map = item.src">{{
+                                        @click="test_map = item.src" index="1-1-1">{{
                                             item.name }}</el-menu-item>
                                 </el-sub-menu>
                                 <el-sub-menu index="1-2">
@@ -35,7 +35,7 @@
                                         <div>石材</div>
                                     </template>
                                     <el-menu-item v-for="item in store_level" :key="item.name"
-                                        @click="test_map = item.src">{{
+                                        @click="test_map = item.src" index="1-2-1">{{
                                             item.name }}</el-menu-item>
                                 </el-sub-menu>
                                 <el-sub-menu index="1-3">
@@ -44,7 +44,7 @@
                                         <div>铁矿石</div>
                                     </template>
                                     <el-menu-item v-for="item in iron_level" :key="item.name"
-                                        @click="test_map = item.src">{{
+                                        @click="test_map = item.src" index="1-3-1">{{
                                             item.name }}</el-menu-item>
                                 </el-sub-menu>
                                 <el-sub-menu index="1-4">
@@ -53,7 +53,7 @@
                                         <div>水源</div>
                                     </template>
                                     <el-menu-item v-for="item in water_level" :key="item.name"
-                                        @click="test_map = item.src">{{
+                                        @click="test_map = item.src" index="1-4-1">{{
                                             item.name }}</el-menu-item>
                                 </el-sub-menu>
                                 <el-sub-menu index="1-5">
@@ -77,7 +77,7 @@
                                 <el-menu-item index="2-2" @click="selectedTag = '生命值/防御力'">生命值/防御力</el-menu-item>
                                 <el-menu-item index="2-3" @click="selectedTag = '再部署时间'">再部署时间</el-menu-item>
                                 <el-menu-item index="2-4" @click="selectedTag = '技力消耗'">技力消耗</el-menu-item>
-                                <el-menu-item index="2-10" @click="selectedTag = '其他'">其他</el-menu-item>
+                                <el-menu-item index="2-5" @click="selectedTag = '其他'">其他</el-menu-item>
                             </el-sub-menu>
                             <el-button @click="ChangeMenuMode" class="el-btn">
                                 <el-icon>
