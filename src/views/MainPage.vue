@@ -144,7 +144,6 @@
 </template>
 
 <script setup>
-import { ELMenu } from '@element-plus'
 import wood_logo from '@/assets/imgs/resource/sandbox_1_wood.png'
 import store_logo from '@/assets/imgs/resource/sandbox_1_stone.png'
 import water_logo from '@/assets/imgs/resource/sandbox_1_water.png'
