@@ -11,7 +11,78 @@
             </el-header>
             <el-container style="height: calc(100vh - 60px);">
                 <el-aside width="200px">
-                    <el-menu :collapse="isCollapse">
+                    <div @click="isMap = true">
+                        <div style="display: flex;padding: 15px 20px;align-items: center;" @click="show_res_list = !show_res_list">
+                            <el-icon style="margin-right: 10px;">
+                                <Picture />
+                            </el-icon>
+                            <div>地图查询</div>
+                        </div>
+                        <div style="display: flex;flex-direction: column;" v-if="show_res_list">
+                            <div>
+                                <div style="display: flex;padding: 20px 20px;" @click="wood_list = !wood_list">
+                                    <img :src="wood_logo" class="menu-item-img">
+                                    <div>木材</div>
+                                </div>
+                                <div style="padding: 12px;" v-for="item in wood_level" :key="item.name"
+                                    @click="test_map = item.src" v-if="wood_list">{{
+                                        item.name }}</div>
+                            </div>
+                            <div>
+                                <div style="display: flex;padding: 20px 20px;" @click="store_list = !store_list">
+                                    <img :src="store_logo" class="menu-item-img">
+                                    <div>石材</div>
+                                </div>
+                                <div style="padding: 12px;" v-for="item in store_level" :key="item.name"
+                                    @click="test_map = item.src" v-if="store_list">{{
+                                        item.name }}</div>
+                            </div>
+                            <div>
+                                <div style="display: flex;padding: 20px 20px;" @click="iron_list = !iron_list">
+                                    <img :src="iron_logo" class="menu-item-img">
+                                    <div>铁矿石</div>
+                                </div>
+                                <div style="padding: 12px;" v-for="item in iron_level" :key="item.name"
+                                    @click="test_map = item.src" v-if="iron_list">{{
+                                        item.name }}</div>
+                            </div>
+                            <div>
+                                <div style="display: flex;padding: 20px 20px;" @click="water_list =!water_list">
+                                    <img :src="water_logo" class="menu-item-img">
+                                    <div>水源</div>
+                                </div>
+                                <div style="padding: 12px;" v-for="item in water_level" :key="item.name"
+                                    @click="test_map = item.src" v-if="water_list">{{
+                                        item.name }}</div>
+                            </div>
+                            <div>
+                                <div style="display: flex;padding: 20px 20px;" @click="other_list = !other_list">
+                                    <img :src="que_logo" class="menu-item-img">
+                                    <div>其他</div>
+                                </div>
+                                <div style="padding: 12px;" v-for="item in other_level" :key="item.name"
+                                    @click="test_map = item.src" v-if="other_list">{{
+                                        item.name }}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div @click="isMap = false">
+                        <div style="display: flex;padding: 15px 20px;align-items: center;" @click="show_food_list = !show_food_list">
+                            <el-icon style="margin-right: 10px;">
+                                <DishDot />
+                            </el-icon>
+                            <div @click="selectedTag = ''">食物查询</div>
+                        </div>
+                        <div v-if="show_food_list">
+                            <div style="display: flex;padding: 20px 20px;" @click="selectedTag = '攻击力/攻击速度'">攻击力/攻击速度</div>
+                            <div style="display: flex;padding: 20px 20px;" @click="selectedTag = '生命值/防御力'">生命值/防御力</div>
+                            <div style="display: flex;padding: 20px 20px;" @click="selectedTag = '再部署时间'">再部署时间</div>
+                            <div style="display: flex;padding: 20px 20px;" @click="selectedTag = '技力消耗'">技力消耗</div>
+                            <div style="display: flex;padding: 20px 20px;" @click="selectedTag = '其他'">其他</div>
+                        </div>
+                    </div>
+                    <!-- <el-menu :collapse="isCollapse">
                         <el-sub-menu index="1" @click="isMap = true">
                             <template #title>
                                 <el-icon>
@@ -82,7 +153,7 @@
                                 <Expand />
                             </el-icon>
                         </el-button>
-                    </el-menu>
+                    </el-menu> -->
                 </el-aside>
                 <el-main>
                     <div v-if="isMap">
@@ -155,11 +226,19 @@ import iron_logo from '@/assets/imgs/resource/sandbox_1_iron.png'
 import que_logo from '@/assets/imgs/resource/sandbox_1_goodsundry.png'
 // import test_map from '@/assets/imgs/maps/sandbox_1_stage_mappreview_0/sandbox_1_21.png'
 import { ref, computed, reactive } from 'vue'
+
+import food_store from '../assets/js/food.js'
 const test_map = ref('https://i0.hdslb.com/bfs/article/d695da39707b21eab0f44f481143281b251015631.png')
 const object = computed(() => [test_map.value])
 
-import food_store from '../assets/js/food.js'
-const imageModules = import.meta.glob('/src/assets/imgs/markfood/*.png')
+const show_res_list = ref(true)
+const show_food_list = ref(false)
+
+const wood_list = ref(false)
+const store_list = ref(false)
+const water_list = ref(false)
+const iron_list = ref(false)
+const other_list = ref(false)
 
 const isMap = ref(true)
 const isCollapse = ref(false)
