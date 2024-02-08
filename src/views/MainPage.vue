@@ -10,7 +10,7 @@
                 </el-input>
             </el-header>
             <el-container style="height: calc(100vh - 60px);">
-                <el-aside width="200px">
+                <el-aside width="200px" style="border-right: rgb(230 230 230) 1px solid;">
                     <div @click="isMap = true">
                         <div class="menu-item" style="display: flex;padding: 15px 20px;align-items: center;" @click="show_res_list = !show_res_list">
                             <el-icon style="margin-right: 10px;">
