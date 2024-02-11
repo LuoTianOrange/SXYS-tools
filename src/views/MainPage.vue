@@ -2,12 +2,20 @@
     <div class="common-layout">
         <el-container>
             <el-header class="header header-text">
-                生息演算在线工具
-                <el-input style="width: 200px;height: 40px;" v-model="search_input" placeholder="找点什么?">
-                    <template #prepend>
-                        <el-button icon="Search" />
-                    </template>
-                </el-input>
+                <div>
+                    生息演算在线工具
+                </div>
+                <div style="display: flex;align-items: center;">
+                    <a href="https://prts.wiki/w/%E6%B2%99%E6%B4%B2%E9%81%97%E9%97%BB#%E5%85%B3%E5%8D%A1%E4%B8%80%E8%A7%88"
+                        style="color: white;margin-right: 20px;" target="_blank">
+                        PRTS
+                    </a>
+                    <el-input class="search-box" v-model="search_input" placeholder="找点什么?">
+                        <template #prepend>
+                            <el-button icon="Search" />
+                        </template>
+                    </el-input>
+                </div>
             </el-header>
             <el-container style="height: calc(100vh - 60px);">
                 <el-aside width="200px" style="border-right: rgb(230 230 230) 1px solid;">
@@ -174,7 +182,7 @@
                     </div>
                     <div v-if="!isMap" style="margin: 10px;font-size: 20px;">共计<span style="color: #000;">{{
                         filteredFoods.length }}</span>个</div>
-                        <!--调味料-->
+                    <!--调味料-->
                     <div v-if="!isMap" style="display: flex;flex-direction: row;align-items: center;flex-wrap: wrap;">
                         <div v-for="i in Seasoning" :key="i.index"
                             style="display: flex;flex-direction: row;align-items: center;margin: 5px 10px;">
@@ -857,6 +865,19 @@ let filteredFoods = computed(() => {
     align-items: center;
 }
 
+.search-box {
+    width: 200px;
+    height: 40px;
+}
+@media screen and (width < 768px) {
+    .search-box {
+        width: 100px;
+    }
+    .search-box-icon{
+        display: none;
+    }
+    
+}
 .menu-item:hover {
     background-color: rgba(215, 231, 237, 0.8);
 }
