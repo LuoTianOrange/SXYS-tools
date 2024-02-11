@@ -12,7 +12,8 @@
             <el-container style="height: calc(100vh - 60px);">
                 <el-aside width="200px" style="border-right: rgb(230 230 230) 1px solid;">
                     <div @click="isMap = true">
-                        <div class="menu-item" style="display: flex;padding: 15px 20px;align-items: center;" @click="show_res_list = !show_res_list">
+                        <div class="menu-item" style="display: flex;padding: 15px 20px;align-items: center;"
+                            @click="show_res_list = !show_res_list">
                             <el-icon style="margin-right: 10px;">
                                 <Picture />
                             </el-icon>
@@ -20,7 +21,8 @@
                         </div>
                         <div style="display: flex;flex-direction: column;" v-if="show_res_list">
                             <div>
-                                <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="wood_list = !wood_list">
+                                <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                    @click="wood_list = !wood_list">
                                     <img :src="wood_logo" class="menu-item-img">
                                     <div>木材</div>
                                 </div>
@@ -29,7 +31,8 @@
                                         item.name }}</div>
                             </div>
                             <div>
-                                <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="store_list = !store_list">
+                                <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                    @click="store_list = !store_list">
                                     <img :src="store_logo" class="menu-item-img">
                                     <div>石材</div>
                                 </div>
@@ -38,7 +41,8 @@
                                         item.name }}</div>
                             </div>
                             <div>
-                                <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="iron_list = !iron_list">
+                                <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                    @click="iron_list = !iron_list">
                                     <img :src="iron_logo" class="menu-item-img">
                                     <div>铁矿石</div>
                                 </div>
@@ -47,7 +51,8 @@
                                         item.name }}</div>
                             </div>
                             <div>
-                                <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="water_list =!water_list">
+                                <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                    @click="water_list = !water_list">
                                     <img :src="water_logo" class="menu-item-img">
                                     <div>水源</div>
                                 </div>
@@ -56,7 +61,8 @@
                                         item.name }}</div>
                             </div>
                             <div>
-                                <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="other_list = !other_list">
+                                <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                    @click="other_list = !other_list">
                                     <img :src="que_logo" class="menu-item-img">
                                     <div>其他</div>
                                 </div>
@@ -67,18 +73,24 @@
                         </div>
                     </div>
                     <div @click="isMap = false">
-                        <div class="menu-item" style="display: flex;padding: 15px 20px;align-items: center;" @click="show_food_list = !show_food_list">
+                        <div class="menu-item" style="display: flex;padding: 15px 20px;align-items: center;"
+                            @click="show_food_list = !show_food_list">
                             <el-icon style="margin-right: 10px;">
                                 <DishDot />
                             </el-icon>
                             <div @click="selectedTag = ''">食物查询</div>
                         </div>
                         <div v-if="show_food_list">
-                            <div  class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '攻击力/攻击速度'">攻击力/攻击速度</div>
-                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '生命值/防御力'">生命值/防御力</div>
-                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '再部署时间'">再部署时间</div>
-                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '技力消耗'">技力消耗</div>
-                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '其他'">其他</div>
+                            <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                @click="selectedTag = '攻击力/攻击速度'">攻击力/攻击速度</div>
+                            <div class="menu-item" style="display: flex;padding: 20px 20px;"
+                                @click="selectedTag = '生命值/防御力'">生命值/防御力</div>
+                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '再部署时间'">
+                                再部署时间</div>
+                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '技力消耗'">
+                                技力消耗</div>
+                            <div class="menu-item" style="display: flex;padding: 20px 20px;" @click="selectedTag = '其他'">其他
+                            </div>
                         </div>
                     </div>
                     <!-- <el-menu :collapse="isCollapse">
@@ -162,7 +174,19 @@
                     </div>
                     <div v-if="!isMap" style="margin: 10px;font-size: 20px;">共计<span style="color: #000;">{{
                         filteredFoods.length }}</span>个</div>
+                        <!--调味料-->
+                    <div v-if="!isMap" style="display: flex;flex-direction: row;align-items: center;flex-wrap: wrap;">
+                        <div v-for="i in Seasoning" :key="i.index"
+                            style="display: flex;flex-direction: row;align-items: center;margin: 5px 10px;">
+                            <div style="width: 30px;height: 30px;">
+                                <img :src="i.seaimg" style="width: 100%;object-fit: cover;">
+                            </div>
+                            <div>{{ i.seaname }}：</div>
+                            <div>{{ i.seades }}</div>
+                        </div>
+                    </div>
                     <div v-if="!isMap" style="display: flex;flex-wrap: wrap;">
+                        <!--食物列表-->
                         <div class="food-item" v-for="i in filteredFoods">
                             <div class="food-img">
                                 <img :src="i.foodimg" style="height:80px;">
@@ -223,6 +247,12 @@ import store_logo from '@/assets/imgs/resource/sandbox_1_stone.png'
 import water_logo from '@/assets/imgs/resource/sandbox_1_water.png'
 import iron_logo from '@/assets/imgs/resource/sandbox_1_iron.png'
 import que_logo from '@/assets/imgs/resource/sandbox_1_goodsundry.png'
+import egg from "@/assets/imgs/food/sandbox_1_egg.png"
+import peper from '@/assets/imgs/food/sandbox_1_peper.png'
+import sugar from '@/assets/imgs/food/sandbox_1_sugar.png'
+import condiment from '@/assets/imgs/food/sandbox_1_condiment.png'
+import mushroom from '@/assets/imgs/food/sandbox_1_mushroom.png'
+import horn from '@/assets/imgs/food/sandbox_1_horn.png'
 // import test_map from '@/assets/imgs/maps/sandbox_1_stage_mappreview_0/sandbox_1_21.png'
 import { ref, computed, reactive } from 'vue'
 
@@ -757,6 +787,45 @@ const other_level = [
     }
 ]
 
+const Seasoning = [
+    {
+        seaname: '羽兽蛋',
+        index: 1,
+        seaimg: egg,
+        seades: '攻击力+3%'
+    },
+    {
+        seaname: '野红角',
+        index: 2,
+        seaimg: peper,
+        seades: '生命值+3%'
+    },
+    {
+        seaname: '魔甘草',
+        index: 3,
+        seaimg: sugar,
+        seades: '攻击速度+3%'
+    },
+    {
+        seaname: '木屑菌',
+        index: 4,
+        seaimg: mushroom,
+        seades: '防御力+3%'
+    },
+    {
+        seaname: '乳香腺',
+        index: 5,
+        seaimg: horn,
+        seades: '法术抗性+3%'
+    },
+    {
+        seaname: '调味料',
+        index: 6,
+        seaimg: condiment,
+        seades: '一个:延长食物生效时间;两个:极大延长食物生效时间并增强食物效果'
+    },
+]
+
 let selectedTag = ref(null);
 
 let foodData = reactive(food_store);
@@ -789,7 +858,7 @@ let filteredFoods = computed(() => {
 }
 
 .menu-item:hover {
-    background-color: rgba(215, 231, 237, 0.8); 
+    background-color: rgba(215, 231, 237, 0.8);
 }
 
 .menu-item-img {
